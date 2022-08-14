@@ -4,7 +4,7 @@ from flask import Flask
 from flask import render_template
 import os
 
-NYTAPIKEY = os.environ.get('NYTAPI')
+NYTAPIKEY = os.getenv('NYTAPI')
 API_URL = f"https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?api-key={NYTAPIKEY}"
 #get_api = f"https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?api-key=Aurpqp9qVGhvc0jNuua3poGPvPEGU938"
 
