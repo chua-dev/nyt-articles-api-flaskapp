@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .title:hover { color: blue; cursor: pointer;}
+    .hide { display: none; }
+    .title { margin-bottom: 100px;}
+    .content-div { margin-bottom: 100px;}
+  </style>
+</head>
+
+
+<body>
+  
+  <h2>Checkout NY Times Most Popular Articles !</h2>
+  <!--<p>{{ values }}</p>-->
+  {% for article in values %}
+
+    <img src={{ article.media[0]["media-metadata"][2].url }} alt="">
+    
+    <h3 class="title" id={{ loop.index0|string }} style="text-decoration: underline;">
+        {{ article['title'] }}
+    </h3>
+
+    <div class="hide content-div" id={{ "content" + loop.index0|string }}>
+      <!--{{ article }}-->
+      <ul>
+        <li>Uri: {{ article.uri }}</li>
+        <li>Url: 
+          <a href={{ article.url }} target=”_blank”> {{ article.url }} </a>
+        </li>
+        <li>Id: {{ article.id }}</li>
+        <li>Asset Id: {{ article.asset_id }}</li>
+        <li>Source: {{ article.source }}</li>
+        <li>Published Date: {{ article.published_date }}</li>
+        <li>Updated: {{ article.updated }}</li>
+        <li>Section: {{ article.section }}</li>
+        <li>Subsection: {{ article.subsection }}</li>
+        <li>Nytdsection: {{ article.nytdsection }}</li>
+        <li>Adx Keyword: {{ article.adx_keywords }}</li>
+        <li>Column: {{ article.column }}</li>
+        <li>Byline: {{ article.byline }}</li>
+        <li>Type: {{ article.type }}</li>
+        <li>Abstract: {{ article.abstract }}</li>
+        <li>Des Facet: {{ article.des_facet }}</li>
+        <li>Org Facet: {{ article.org_facet }}</li>
+        <li>Per Facet: {{ article.per_facet }}</li>
+        <li>Geo Facet: {{ article.geo_facet }}</li>
+        <li>Copy Right: {{ article.media[0].copyright }}</li>
+        <li>Approved For Syndication: {{ article.media[0].approved_for_syndication }}</li>
+
+        
+
+      </ul>
+
+    </div>
+  {% endfor %}
+
+  <script>
+    console.log("Its working");
+    var titles = document.querySelectorAll(".title");
+    titles.forEach((title) => {
+      title.addEventListener("click", function(e) {
+       let idClicked = e.target.id
+       let contentId = `content${idClicked}`
+       document.getElementById(contentId).classList.toggle("hide")
+      })
+    })
+
+  </script>
+
+</body>
+</html>
